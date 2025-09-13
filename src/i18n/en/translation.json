@@ -4,12 +4,10 @@
       "title": "Zen Browser",
       "hero": {
         "title": [
-          { "text": "welcome ", "highlight": false },
+          { "text": "welcome ", "highlight": true },
           { "text": "to ", "highlight": false },
           { "text": "\n", "highlight": false },
-          { "text": "a ", "highlight": false },
-          { "text": "calmer ", "highlight": true },
-          { "text": "internet", "highlight": false }
+          { "text": "BrowserOS", "highlight": false }
         ],
         "description": [
           "Beautifully designed, privacy-focused, and packed with features.",
@@ -448,6 +446,10 @@
     "about": {
       "title": "About Zen",
       "description": "We are simply a group of developers and designers who care about your experience on the web. We believe that the internet should be a place where you can explore, learn, and connect without worrying about your data being collected."
+    },
+    "features": {
+      "title": "Features - BrowserOS",
+      "description": "Explore the powerful features that make BrowserOS the most productive browser. Workspaces, Compact Mode, Glance, and Split View."
     },
     "donate": {
       "title": "Donate - Zen",

@@ -3,7 +3,7 @@ import { Astronav, Dropdown, DropdownItems, MenuItems } from 'astro-navbar'
 import Button from '~/components/Button.astro'
 import ArrowRightIcon from '~/icons/ArrowRightIcon.astro'
 import ChevronDownIcon from '~/icons/ChevronDownIcon.astro'
-import DownloadIcon from '~/icons/DownloadIcon.astro'
+import GitHubIcon from '~/icons/GitHubIcon.astro'
 import MenuIcon from '~/icons/MenuIcon.astro'
 import { getLocale, getPath, getUI } from '~/utils/i18n'
 import Logo from './Logo.astro'
@@ -109,13 +109,19 @@ const {
       <div id="theme-switcher">
         <ThemeSwitch label="Toggle theme" />
       </div>
-      <Button href="/download" class="hidden lg:flex" isPrimary>
+      <Button
+        href="https://github.com/browseros-ai/BrowserOS"
+        target="_blank"
+        class="hidden lg:flex"
+        isPrimary
+        localePath={false}
+      >
         <span class="hidden items-center gap-2 lg:flex">
-          {menu.download}
-          <ArrowRightIcon class="size-4" />
+          4k+ Stars
+          <GitHubIcon class="size-4" />
         </span>
         <span class="flex items-center gap-2 lg:hidden">
-          <DownloadIcon class="size-4" />
+          <GitHubIcon class="size-4" />
         </span>
       </Button>
       {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}

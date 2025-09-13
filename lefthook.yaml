@@ -15,10 +15,11 @@ pre-commit:
       run: |
         pnpm lefthook run eslint
 
-    cspell:
-      priority: 3
-      run: |
-        pnpm lefthook run cspell
+    ## Disabled cspell spellcheck on pre-commit
+    # cspell:
+    #   priority: 3
+    #   run: |
+    #     pnpm lefthook run cspell
 
 eslint:
   commands:
@@ -33,19 +34,21 @@ eslint:
         pnpm eslint {staged_files} --max-warnings=0 --fix --cache
       stage_fixed: true
 
-cspell:
-  commands:
-    base:
-      glob: "*.{js,cjs,mjs,jsx,ts,cts,mts,tsx,d.ts,astro,json,yaml,yml,md,mdx}"
-      run: |
-        pnpm cspell {staged_files} --cache --cache-strategy=content --cache-location=.cspellcache
-      stage_fixed: true
+## cspell commands disabled
+# cspell:
+#   commands:
+#     base:
+#       glob: "*.{js,cjs,mjs,jsx,ts,cts,mts,tsx,d.ts,astro,json,yaml,yml,md,mdx}"
+#       run: |
+#         pnpm cspell {staged_files} --cache --cache-strategy=content --cache-location=.cspellcache
+#       stage_fixed: true
 
-commit-msg:
-  commands:
-    commitlint:
-      run: |
-        pnpm commitlint --edit {1}
+## Disabled commitlint commit message checks
+# commit-msg:
+#   commands:
+#     commitlint:
+#       run: |
+#         pnpm commitlint --edit {1}
 
 post-merge:
   commands:

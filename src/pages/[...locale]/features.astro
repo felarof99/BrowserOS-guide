@@ -1,0 +1,20 @@
+---
+import Features from '~/components/Features.astro'
+import Layout from '~/layouts/Layout.astro'
+import { getLocale, getUI } from '~/utils/i18n'
+export { getStaticPaths } from '~/utils/i18n'
+
+const locale = getLocale(Astro)
+
+const { layout } = getUI(locale)
+---
+
+<Layout
+  title={layout.features?.title || 'Features - BrowserOS'}
+  description={layout.features?.description ||
+    'Explore the powerful features that make BrowserOS the most productive browser. Workspaces, Compact Mode, Glance, and Split View.'}
+>
+  <main class="container flex min-h-screen w-full flex-col py-24">
+    <Features />
+  </main>
+</Layout>

@@ -1,0 +1,326 @@
+---
+import Button from '~/components/Button.astro'
+import Video from '~/components/Video.astro'
+import Title from '~/components/Title.astro'
+import ArrowRightIcon from '~/icons/ArrowRightIcon.astro'
+import { getLocale, getPath, getUI } from '~/utils/i18n'
+
+const locale = getLocale(Astro)
+const getLocalePath = getPath(locale)
+
+const {
+  routes: {
+    index: { hero },
+  },
+} = getUI(locale)
+---
+
+<div id="onboarding-carousel" class="relative mx-auto w-full max-w-7xl">
+  <!-- Progress Indicators -->
+  <div class="mb-8 flex justify-center gap-2">
+    <button
+      data-step="0"
+      class="step-indicator h-2 w-2 rounded-full bg-dark opacity-100 transition-all duration-300"
+      aria-label="Go to step 1"></button>
+    <button
+      data-step="1"
+      class="step-indicator h-2 w-2 rounded-full bg-dark opacity-30 transition-all duration-300"
+      aria-label="Go to step 2"></button>
+    <button
+      data-step="2"
+      class="step-indicator h-2 w-2 rounded-full bg-dark opacity-30 transition-all duration-300"
+      aria-label="Go to step 3"></button>
+    <button
+      data-step="3"
+      class="step-indicator h-2 w-2 rounded-full bg-dark opacity-30 transition-all duration-300"
+      aria-label="Go to step 4"></button>
+  </div>
+
+  <!-- Carousel Container -->
+  <div class="overflow-hidden rounded-2xl">
+    <div
+      class="carousel-track flex transition-transform duration-500 ease-in-out"
+      style="transform: translateX(0)"
+    >
+      <!-- Step 1: Welcome Header -->
+      <div class="carousel-slide w-full flex-shrink-0 px-4">
+        <div class="space-y-6 text-center">
+          <h1 class="text-6xl font-normal md:text-8xl lg:text-9xl">
+            <span class="italic text-coral">welcome</span> to
+            <br class="hidden md:block" />
+            BrowserOS
+          </h1>
+          <p class="text-dark/70 mx-auto max-w-3xl text-xl">
+            Here's a quick onboarding guide to get you started!
+            <br class="hidden sm:inline" />
+            Click next to learn about the key features.
+          </p>
+        </div>
+      </div>
+
+      <!-- Step 2: Video Introduction -->
+      <div class="carousel-slide w-full flex-shrink-0 px-4">
+        <div class="space-y-6 text-center">
+          <h2 class="text-4xl font-semibold md:text-5xl">See BrowserOS in Action</h2>
+          <p class="text-dark/70 mx-auto max-w-3xl text-xl">
+            Watch this quick introduction to see what makes BrowserOS special.
+          </p>
+          <div class="mt-6 flex justify-center">
+            <Video
+              name="hero-video"
+              autoplay
+              loop
+              muted
+              playsinline
+              preload="none"
+              class="max-w-full rounded-xl"
+              style="max-height: 500px"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 3: Key Features -->
+      <div class="carousel-slide w-full flex-shrink-0 px-4">
+        <div class="space-y-6 text-center">
+          <h2 class="text-4xl font-semibold md:text-5xl">Powerful Features</h2>
+          <p class="text-dark/70 mx-auto max-w-3xl text-xl">
+            Designed for productivity and privacy
+          </p>
+          <div class="mx-auto mt-8 grid max-w-4xl grid-cols-1 gap-6 md:grid-cols-2">
+            <div class="rounded-xl bg-subtle p-6 text-left">
+              <h3 class="mb-2 text-xl font-semibold">🎯 Workspaces</h3>
+              <p class="text-dark/70">
+                Organize your tabs into separate workspaces for different projects
+              </p>
+            </div>
+            <div class="rounded-xl bg-subtle p-6 text-left">
+              <h3 class="mb-2 text-xl font-semibold">🔒 Privacy First</h3>
+              <p class="text-dark/70">No telemetry, no tracking. Your data stays yours</p>
+            </div>
+            <div class="rounded-xl bg-subtle p-6 text-left">
+              <h3 class="mb-2 text-xl font-semibold">⚡ Fast & Light</h3>
+              <p class="text-dark/70">Optimized performance with minimal resource usage</p>
+            </div>
+            <div class="rounded-xl bg-subtle p-6 text-left">
+              <h3 class="mb-2 text-xl font-semibold">🎨 Customizable</h3>
+              <p class="text-dark/70">Themes and mods to make it truly yours</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 4: Get Started -->
+      <div class="carousel-slide w-full flex-shrink-0 px-4">
+        <div class="space-y-6 text-center">
+          <h2 class="text-4xl font-semibold md:text-5xl">Ready to Start?</h2>
+          <p class="text-dark/70 mx-auto max-w-3xl text-xl">
+            Join thousands of users who've already made the switch to a better browsing experience.
+          </p>
+          <div class="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
+            <Button class="w-fit" href={getLocalePath('/download')} isPrimary>
+              Download BrowserOS
+              <ArrowRightIcon class="size-4" />
+            </Button>
+            <Button class="w-fit" href={getLocalePath('/donate')}> Support the Project ❤️ </Button>
+          </div>
+          <div class="mx-auto mt-8 max-w-md rounded-xl bg-subtle p-6">
+            <p class="text-dark/70 text-sm">
+              ✅ Free and Open Source<br />
+              ✅ Available for Windows, Mac, and Linux<br />
+              ✅ No account required
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation Buttons -->
+  <div class="mt-8 flex items-center justify-between">
+    <button
+      id="prev-btn"
+      class="carousel-nav hover:bg-dark/10 flex items-center gap-2 rounded-lg bg-subtle px-4 py-2 transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-30"
+      disabled
+    >
+      <svg class="h-5 w-5 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"
+        ></path>
+      </svg>
+      Previous
+    </button>
+
+    <span class="text-dark/50 text-sm">
+      Step <span id="current-step">1</span> of 4
+    </span>
+
+    <button
+      id="next-btn"
+      class="carousel-nav hover:bg-dark/90 flex items-center gap-2 rounded-lg bg-dark px-4 py-2 text-paper transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-30"
+    >
+      Next
+      <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"
+        ></path>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<style>
+  .carousel-slide {
+    min-height: 650px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media (max-width: 768px) {
+    .carousel-slide {
+      min-height: 500px;
+    }
+  }
+
+  .step-indicator {
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .step-indicator:hover {
+    transform: scale(1.2);
+  }
+
+  .step-indicator.active {
+    width: 24px;
+    opacity: 1;
+  }
+</style>
+
+<script>
+  function initCarousel() {
+    const carousel = document.getElementById('onboarding-carousel')
+    if (!carousel) return
+
+    const track = carousel.querySelector('.carousel-track') as HTMLElement
+    const slides = carousel.querySelectorAll('.carousel-slide')
+    const prevBtn = document.getElementById('prev-btn') as HTMLButtonElement
+    const nextBtn = document.getElementById('next-btn') as HTMLButtonElement
+    const indicators = carousel.querySelectorAll('.step-indicator')
+    const currentStepSpan = document.getElementById('current-step')
+
+    let currentIndex = 0
+    const totalSlides = slides.length
+
+    function updateCarousel() {
+      // Update track position
+      const slideWidth = 100
+      track.style.transform = `translateX(-${currentIndex * slideWidth}%)`
+
+      // Update buttons
+      prevBtn.disabled = currentIndex === 0
+      nextBtn.disabled = currentIndex === totalSlides - 1
+
+      // Update step indicator
+      if (currentStepSpan) {
+        currentStepSpan.textContent = (currentIndex + 1).toString()
+      }
+
+      // Update indicators
+      indicators.forEach((indicator, index) => {
+        if (index === currentIndex) {
+          indicator.classList.add('active')
+          indicator.classList.remove('opacity-30')
+          indicator.classList.add('opacity-100')
+        } else {
+          indicator.classList.remove('active')
+          indicator.classList.remove('opacity-100')
+          indicator.classList.add('opacity-30')
+        }
+      })
+
+      // Update next button text on last slide
+      if (currentIndex === totalSlides - 1) {
+        nextBtn.innerHTML = `
+          Get Started
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+          </svg>
+        `
+      } else {
+        nextBtn.innerHTML = `
+          Next
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+          </svg>
+        `
+      }
+    }
+
+    function goToSlide(index: number) {
+      if (index >= 0 && index < totalSlides) {
+        currentIndex = index
+        updateCarousel()
+      }
+    }
+
+    // Event listeners
+    prevBtn?.addEventListener('click', () => goToSlide(currentIndex - 1))
+    nextBtn?.addEventListener('click', () => {
+      if (currentIndex === totalSlides - 1) {
+        // On last slide, navigate to download page
+        window.location.href = '/download'
+      } else {
+        goToSlide(currentIndex + 1)
+      }
+    })
+
+    // Indicator clicks
+    indicators.forEach((indicator, index) => {
+      indicator.addEventListener('click', () => goToSlide(index))
+    })
+
+    // Keyboard navigation
+    document.addEventListener('keydown', e => {
+      if (e.key === 'ArrowLeft') goToSlide(currentIndex - 1)
+      if (e.key === 'ArrowRight') goToSlide(currentIndex + 1)
+    })
+
+    // Touch/swipe support for mobile
+    let touchStartX = 0
+    let touchEndX = 0
+
+    carousel.addEventListener('touchstart', e => {
+      touchStartX = e.changedTouches[0].screenX
+    })
+
+    carousel.addEventListener('touchend', e => {
+      touchEndX = e.changedTouches[0].screenX
+      handleSwipe()
+    })
+
+    function handleSwipe() {
+      const swipeThreshold = 50
+      const diff = touchStartX - touchEndX
+
+      if (Math.abs(diff) > swipeThreshold) {
+        if (diff > 0) {
+          // Swiped left
+          goToSlide(currentIndex + 1)
+        } else {
+          // Swiped right
+          goToSlide(currentIndex - 1)
+        }
+      }
+    }
+
+    // Initialize
+    updateCarousel()
+  }
+
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCarousel)
+  } else {
+    initCarousel()
+  }
+</script>
