@@ -1,7 +1,7 @@
 <div align="center">
 </div>
 <h1 align="center">
-BrowserOS onboard Website
+BrowserOS onboarding website
 </h1>
 
 
